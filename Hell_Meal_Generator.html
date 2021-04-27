@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Meal Generator from Hell</title>
+</head>
+
+<body>
+	<h2>Welcome !</h2>
+
+	<p>I see you are quite hungry. Perhaps I shall prepare you a meal from hell ?</p>
+	<p>Click the <code>generate meal</code> button to generate a tasty abomination !</p>
+
+	<hr>
+
+	<div>
+		<h3 id='yourmealis'></h3>
+		<pre id='mealpre'>(meal goes here)</pre>
+
+		<button id='generatebutton'><code>generate meal</code></button>
+	</div>
+
+	<script>
+		window.onload = function () {
+
+			// Functions
+			const $ = function $ (id) {
+				return document.getElementById (id);
+			};
+			const randInt = function randInt (min, max) {
+				min = Math.ceil (min);
+				max = Math.floor (max);
+				return Math.floor (Math.random () * (max - min + 1)) + min;
+			};
+
+			// HTML Elements
+			const html = {
+				yourMealIs: $ ('yourmealis'),
+				mealPre: $ ('mealpre'),
+				generateButton: $ ('generatebutton')
+			};
+
+			// Meal Combinations
+			const mealCombos = {
+				types: [
+					'raw',
+					'fried',
+					'cooked',
+					'mangled',
+					'boiled',
+					'squished',
+					'seasoned',
+					'stirred',
+					'grilled',
+					'glazed',
+					'buttered',
+					'sugared',
+					'baked',
+					'deepfried',
+					'scrambled',
+					'fresh',
+					'caramelized',
+					'rotting',
+				],
+				ingredients: [
+					'caramel',
+					'nutella',
+					'peanut butter and jam',
+					'trash',
+					'beef',
+					'chicken',
+					'honey',
+					'blueberry',
+					'horsemeat',
+					'apple',
+					'cow',
+					'tomato',
+					'water',
+					'vodka',
+					'semen',
+					'bloody',
+					'stinky',
+					'potato',
+					'salmon',
+					'wood',
+					'shrimp',
+					'piss',
+					'cinnamon',
+					'jellybean',
+					'pig',
+					'cheese',
+					'rat',
+					'egg',
+					'coconut',
+					'plastic',
+				],
+				meals: [
+					'flavored shit',
+					'sandwich',
+					'mulukhiye',
+					'tacos',
+					'milk',
+					'pie',
+					'dicks',
+					'custard',
+					'flavored fish',
+					'pussy',
+					'steak',
+					'cubes',
+					'goblins',
+					'sushi',
+					'shit',
+					'calamari',
+					'toast',
+					'titties',
+					'pillows',
+					'bubblewrap',
+					'pasta',
+					'rice',
+					'deoderant',
+					'sashimi',
+					'donut',
+					'butterballs',
+					'socks',
+					'pants',
+					'wine',
+					'teeth',
+					'coffee',
+					'lava',
+					'riz w bazella',
+					'testicles',
+					'paper',
+					'juice',
+					'cake',
+					'flavored chips',
+					'babies',
+					'pudding',
+					'nintendo ds',
+				],
+				sides: [
+					'fries',
+					'cocks',
+					'peanuts',
+					'leaves',
+					'wool',
+					'garbage juice',
+					'trail mix',
+					'chips',
+					'dust',
+					'crackers',
+					'goat balls',
+					'coins',
+					'styrofoam',
+					'maltesers',
+					'raisins',
+					'hair',
+					'glass',
+					'sprinkles',
+					'puzzle pieces',
+					'tea',
+					'bread',
+					'snow',
+				],
+
+				chanceOfSide: 0.4,
+
+				getMeal: function () {
+					var type = this.types [randInt (0, this.types.length - 1)];
+					var ingredient = this.ingredients [randInt (0, this.ingredients.length - 1)];
+					var meal = this.meals [randInt (0, this.meals.length - 1)];
+					var side;
+
+					if (Math.random () > 1 - this.chanceOfSide)
+						side = 'with a side of ' + this.sides [randInt (0, this.sides.length - 1)];
+					else
+						side = '';
+
+					return `${type} ${ingredient} ${meal} ${side}`;
+				}
+			};
+
+			html.generateButton.onclick = function () {
+				html.yourMealIs.innerHTML = 'Your meal is...';
+
+				var meal = mealCombos.getMeal ();
+				console.log (meal);
+				html.mealPre.innerHTML = meal;
+			};
+
+			console.log (mealCombos.types.length, mealCombos.ingredients.length, mealCombos.meals.length, mealCombos.sides.length);
+
+		};
+	</script>
+
+</body>
+
+</html>
